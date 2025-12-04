@@ -15,3 +15,4 @@ bar(x,h);
 title('Histogram Image [Sachin 01]');
 xlabel('Intensity Values');
 ylabel('Number of Pixels');
+
