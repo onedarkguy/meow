@@ -1,0 +1,8 @@
+i=imread("E:\parsh\Pictures\black3.jpg");
+a=imresize(i,0.8);
+b=imresize(i,0.6);
+c=imresize(i,0.4);
+subplot(2,2,1),imshow(i),title('Original');
+subplot(2,2,2),imshow(a),title('0.8');
+subplot(2,2,3),imshow(c),title('0.6');
+subplot(2,2,4),imshow(c),title('0.4');

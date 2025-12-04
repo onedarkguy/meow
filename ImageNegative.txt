@@ -1,0 +1,15 @@
+f = imread ('D:\image processing\bandw.jpg');
+[rows,cols] = size(f);
+g= zeros(rows, cols, "uint8");
+for i=1:rows
+for j=1:cols
+r=f(i,j);
+g(i,j)= 255 - r;
+end
+end
+subplot(1,2,1);
+title('Original Image');
+imshow(f);
+subplot(1,2,2);
+title('Negative Image');
+imshow(g);

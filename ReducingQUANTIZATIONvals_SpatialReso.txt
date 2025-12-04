@@ -1,0 +1,19 @@
+img = imread("E:\parsh\Pictures\black2.jpg");
+// convert to grayscale if RGB
+if size(img,3) == 3 then
+img = rgb2gray(img);
+end
+img = im2double(img); // normalize to [0,1]
+[m, n] = size(img);
+// quantization
+for i = 1:m
+for j = 1:n
+b(i,j) = img(i,j) * 63 / 63; // normalized
+c(i,j) = img(i,j) * 127 / 127; // normalized
+d(i,j) = img(i,j) * 191 / 191; // normalized
+end
+end
+subplot(2,2,1), imshow(img), title('Original');
+subplot(2,2,2), imshow(b), title('Quantized 63');
+subplot(2,2,3), imshow(c), title('Quantized 127');
+subplot(2,2,4), imshow(d), title('Quantized 191');

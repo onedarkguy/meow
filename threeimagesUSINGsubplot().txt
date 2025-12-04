@@ -1,0 +1,12 @@
+img1 = imread('D:\image procecing\gift.jpeg');
+img2 = imread('D:\image procecing\camera.jpg');
+img3 = imread('D:\image procecing\color.png');
+subplot(2,2,1);
+title('Image1:gift');
+imshow(img1);
+subplot(2,2,2);
+title('Image2:camera');
+imshow(img2);
+subplot(2,2,3);
+title('Image3:color');
+imshow(img3);

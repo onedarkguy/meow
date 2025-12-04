@@ -1,0 +1,8 @@
+aa=imread("E:\parsh\Pictures\black2.jpg");
+se1=ones(11,11);
+m1=imerode(aa,se1);
+m2=aa-m1;
+subplot(2,1,1),imshow(aa);
+title('orignal image');
+subplot(2,1,2),imshow(m2);
+title('edge detection');

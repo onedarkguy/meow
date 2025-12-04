@@ -1,0 +1,23 @@
+clc;
+f= imread ('D:\image processing\tree.jpg');
+[m,n]=size(f);
+L=max(max(f));
+a=round(L/2);
+b=L;
+for i=1:m
+for j=1:n
+r=f(i,j);
+if(r>a & r<b)
+g1(i,j) = L;
+else
+g1(i,j) = 0;
+end
+end
+end
+g1=uint8(g1);
+subplot(1,2,1);
+title('Original Image');
+imshow(f);
+subplot(1,2,2);
+title('Grey Scale Image');
+imshow(g1);

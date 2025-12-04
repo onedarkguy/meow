@@ -1,0 +1,7 @@
+img=imread("E:\parsh\Pictures\black2.jpg");
+img= rgb2gray(img);
+se1 = ones(11,11);
+im2 = imerode(img,se1);
+im3 = imdilate(im2,se1);
+subplot(1,2,1),imshow(img),title('original image');
+subplot(1,2,2),imshow(im3),title('opening image');

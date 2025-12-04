@@ -1,0 +1,12 @@
+img1 = imread('D:\image procecing\gift.jpeg');
+img2 = imread('D:\image procecing\camera.jpg');
+img3 = imread('D:\image procecing\color.png');
+figure(1);
+title('Image 1 : Gift');
+imshow(img1)
+figure(2);
+title('Image 2:Camera');
+imshow(img2)
+figure(3);
+title('Image 3: color');
+imshow(img3)

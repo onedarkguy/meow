@@ -1,0 +1,108 @@
+clc; clear;
+// --- set test inputs here (change if you want) ---
+symbols = ["I","N","D","A"]; // expected: string array
+freq = [2,1,1,1]; // expected: numeric row vector
+disp("size(symbols): " + string(size(symbols)));
+disp("size(freq): " + string(size(freq)));
+disp("symbols raw:"); disp(symbols);
+disp("freq raw:"); disp(freq);
+disp("====================");
+// --- a completely colon-free Shannon-Fano implementation ---
+// returns a list codes where codes(k) is the code for sortedSymbols(k)
+function codes=sf_encode(symbols_in, freq_in)
+// copy inputs to local vars
+symbols = symbols_in;
+freq = freq_in;
+// (1) sort descending by frequency (uses gsort on numeric vector)
+probs = zeros(1, length(freq));
+i = 1;
+KISHINCHAND CHELLARAM COLLEGE, MUMBAI
+M.Sc.(part-1) (Computer Science) Year 2025-26
+while i <= length(freq)
+probs(i) = freq(i);
+i = i + 1;
+end
+[sorted_freq, order] = gsort(probs, "g", "d"); // descending
+// reorder symbols into sortedSymbols using order indices (no :)
+sortedSymbols = list();
+j = 1;
+while j <= length(order)
+sortedSymbols($+1) = symbols(order(j));
+j = j + 1;
+end
+// create numeric vector sortedFreq
+sortedFreq = zeros(1, length(order));
+j = 1;
+while j <= length(order)
+sortedFreq(j) = sorted_freq(j);
+j = j + 1;
+end
+n = length(sortedFreq);
+// init codes as a list of empty strings
+codes = list();
+k = 1;
+while k <= n
+codes($+1) = "";
+k = k + 1;
+end
+// recursive assignment implemented with a stack
+stack = list();
+stack($+1) = list(1, n, ""); // start=1, end=n, prefix=""
+while length(stack) > 0
+// pop top
+elem = stack($); stack($) = null();
+startIdx = elem(1);
+endIdx = elem(2);
+prefix = elem(3);
+
+// if single symbol assign prefix
+if startIdx == endIdx then
+codes(startIdx) = prefix;
+continue;
+end
+// find split point by manual sum
+total = 0;
+p = startIdx;
+while p <= endIdx
+total = total + sortedFreq(p);
+p = p + 1;
+end
+half = total / 2;
+partSum = 0;
+q = startIdx;
+splitPoint = startIdx;
+while q <= endIdx
+partSum = partSum + sortedFreq(q);
+if partSum >= half then
+splitPoint = q;
+break;
+end
+q = q + 1;
+end
+// push right part then left part (LIFO)
+if splitPoint + 1 <= endIdx then
+stack($+1) = list(splitPoint + 1, endIdx, prefix + "1");
+end
+stack($+1) = list(startIdx, splitPoint, prefix + "0");
+end
+// prepare output
+output = list();
+output($+1) = sortedSymbols;
+output($+1) = codes;
+output($+1) = sortedFreq;
+codes = output;
+endfunction
+
+// --- run the encoder ---
+out = sf_encode(symbols, freq);
+sortedSymbols = out(1);
+codesList = out(2);
+sortedFreqNum = out(3);
+// print results
+disp("===== Shannon-Fano result =====");
+i = 1;
+while i <= length(sortedSymbols)
+disp(sortedSymbols(i) + " " + string(sortedFreqNum(i)) + " " + codesList(i));
+i = i + 1;
+end
+disp("================================");

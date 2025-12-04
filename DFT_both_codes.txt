@@ -1,0 +1,23 @@
+// code1 :
+
+f=[1 1 1 1;1 1 1 1;1 1 1 1;1 1 1 1];
+t=fft2(f);
+disp('DFT Example')
+disp(f,'Input Image')
+disp(t,'display')
+
+
+
+//code2 :
+
+f=[1 1 0 1;1 0 1 1;1 0 1 1;1 1 0 1];
+F=fft2(f);
+disp('DFT Example')
+disp(f,'Input Image')
+disp(t,'display')
+subplot(221);
+imshow(f);
+title('Image in spatial domain')
+subplot(223);
+imshow(F);
+title('Image in frequency domain')

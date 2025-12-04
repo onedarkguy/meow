@@ -1,0 +1,21 @@
+clc;
+f = imread ('D:\image processing\band.jpg');
+[rows,cols] = size(f);
+T = 128;
+g= zeros(rows, cols, "uint8");
+for i=1:rows
+for j=1:cols
+r=f(i,j)
+if r>T then
+g(i,j) = 255;
+else
+g(i,j) = 0;
+end
+end
+end
+subplot(1,2,1);
+title('Original Image');
+imshow(f);
+subplot(1,2,2);
+title('Threshold Image');
+imshow(g);

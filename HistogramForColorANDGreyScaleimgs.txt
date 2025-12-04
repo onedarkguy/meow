@@ -1,0 +1,17 @@
+img=imread("E:\image Prac\Sachin.jpg");
+subplot(131)
+imshow(img);//24 Bits
+title("Original Color Image");
+mg_gray=rgb2gray(img);
+subplot(132)
+imshow(mg_gray);//8 Bits
+title('GrayScale Image');
+//Compute Histogram
+nbins=256;
+[h,x]=imhist(mg_gray,nbins);
+//Display Histogram
+subplot(133);
+bar(x,h);
+title('Histogram Image [Sachin 01]');
+xlabel('Intensity Values');
+ylabel('Number of Pixels');
