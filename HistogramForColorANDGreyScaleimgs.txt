@@ -1,4 +1,4 @@
-img=imread("E:\image Prac\Sachin.jpg");
+img=imread("E:\image Prac\demo.jpg");
 subplot(131)
 imshow(img);//24 Bits
 title("Original Color Image");
